@@ -5,7 +5,7 @@ const fs = require('fs');
 const { resourceLimits } = require('worker_threads');
 
 // An array of questions for user input
-const questions = [
+inquirer.prompt([
     {
         type: "input",
         name: "name",
@@ -58,30 +58,24 @@ const questions = [
         type: "input",
         name: "email",
         message: "What is your email?"
-    }
-];
+    },
+])
+.then((answers) => {
+    const htmlPageContent = generateMarkdown(answers);
 
-// function to initialize app
-function init() {
-    inquirer.prompt(questions)
-        .then((userAnswers) => {
-            console.log(userAnswers)
+    fs.writeFile('generateMarkdown', htmlPageContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created file!')
+    );
+  });
 
-        writeToFile(userAnswers)
-    })
-};
-
-// Initialize app
-init();
+ 
 
 
-// function to write README file
-function writeToFile(userAnswers) {
-    fs.writeFile("README.md", generateMarkdown({...userAnswers}), (err) => {
-        if(err) {
-            throw err;
-        } console.log("file created")
-    });
-};
-
-// GitHub link needed
+// const init = () => {
+//     promptUser()
+//       .then((answers) => fs.writeFileSync('generateMarkdown', [], (answers)))
+//       .then(() => console.log('Successfully created'))
+//       .catch((err) => console.error(err));
+//   };
+  
+//   init();
