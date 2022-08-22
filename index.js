@@ -1,7 +1,8 @@
 // Packages needed for this application
 const inquirer = require('inquirer');
-const generateReadme = require('./generateReadme');
+const generateMarkdown = require('./generateMarkdown');
 const fs = require('fs');
+const { resourceLimits } = require('worker_threads');
 
 // An array of questions for user input
 const questions = [
@@ -41,14 +42,13 @@ const questions = [
         message: "What are the test instructions?"
     },
     {
-        type: "list",
+        type: "checkbox",
         name: "license",
-        message: "Any license?",
-        choices: ['MIT', 'Apache', 'GNU', 'ISC'],
-        filter(val) {
-            return val.toLowerCase();
-        }
-    },
+        message: "Did you use any license?",
+        choices: [
+            'MIT', 'Apache', 'GNU', 'ISC', 'none',
+        ],
+        },
     {
         type: "input",
         name: "GitHub",
@@ -61,27 +61,27 @@ const questions = [
     }
 ];
 
-// function to write README file
-function writeToFile(fileName, data) {}
-
 // function to initialize app
 function init() {
     inquirer.prompt(questions)
         .then((userAnswers) => {
             console.log(userAnswers)
 
-            const template = `# ${userAnswers.title}
-            
-## Content
+        writeToFile(userAnswers)
+    })
+};
 
-my name is ${userAnswers.name} and my GitHub username is ${userAnswers.GitHub} ${userAnswers.title} ${userAnswers.title} ${userAnswers.title}`
-
-            fs.writeFile("README.md", template, (err) => {
-                if(err) throw err;
-                console.log("created a file")
-            })
-        })
-}
-
-// Function call to initialize app
+// Initialize app
 init();
+
+
+// function to write README file
+function writeToFile(userAnswers) {
+    fs.writeFile("README.md", generateMarkdown({...userAnswers}), (err) => {
+        if(err) {
+            throw err;
+        } console.log("file created")
+    });
+};
+
+// GitHub link needed
