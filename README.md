@@ -1,36 +1,37 @@
             
-# readme
+# README-Generator
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Content
-- [Project description](#description)
+- [Project description](#Product description)
 - [Installation](#installation)
 - [Usage Information](#usage)
-- [Test Instructions](#test)
+- [Test Instructions](#Test)
 - [License](#license)
-- [Contribution Guidelines](#contribution)
+- [Contribution](#contribution)
 - [Contact Information](#contact)
 
-## Description of project
-asdfa
+## Project description
+To help developers producde a professional README file
 
 ## Installation
-asdfasd
+npm i
 
 ## Usage Information
-adsfads
+Install and run from the CLI then navigate to the file path for this file and enter “node index.js” in the command line then answer the questions.
 
-## Test Instructions
-asdf
+## Test
+npm test
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/) license
 
-## Contribution Guidelines
-asdfas
+## Contribution
+Jason South
 
 ## Contact
-jsouth75 <br/>
-jason.south@me.com
+Jason South <br/>
+GitHub username: jsouth75 <br/>
+Email: jason.south@me.com
         

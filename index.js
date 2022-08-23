@@ -24,22 +24,22 @@ const questions = [
     {
         type: "input",
         name: "installation",
-        message: "List any installation instructions?"
+        message: "What installation method is used?"
     },
     {
         type: "input",
         name: "usage",
-        message: "What is the project usage?"
+        message: "Explain how to use/run this project?"
     },
     {
         type: "input",
         name: "contribution",
-        message: "What are the contribution guidelines?"
+        message: "Who all contributed to this project?"
     },
     {
         type: "input",
         name: "test",
-        message: "Do you have any test instructions?"
+        message: "What testing method is used?"
     },
     {
         type: "checkbox",

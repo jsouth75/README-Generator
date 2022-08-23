@@ -14,6 +14,9 @@ function renderLicenseLink(license) {}
 function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
+
+// function generateMarkdown (license) {}
+
 class generateMarkdown {
 
     static renderLicenseBadge(license){
@@ -52,15 +55,15 @@ class generateMarkdown {
 ${this.renderLicenseBadge(answers.license)}
 
 ## Table of Content
-- [Project description](#description)
+- [Project description](#Product description)
 - [Installation](#installation)
 - [Usage Information](#usage)
-- [Test Instructions](#test)
+- [Test Instructions](#Test)
 - [License](#license)
-- [Contribution Guidelines](#contribution)
+- [Contribution](#contribution)
 - [Contact Information](#contact)
 
-## Description of project
+## Project description
 ${answers.description}
 
 ## Installation
@@ -69,18 +72,19 @@ ${answers.installation}
 ## Usage Information
 ${answers.usage}
 
-## Test Instructions
+## Test
 ${answers.test}
 
 ## License
 ${this.renderLicenseSection(answers.license)}
 
-## Contribution Guidelines
+## Contribution
 ${answers.contribution}
 
 ## Contact
-${answers.GitHub} <br/>
-${answers.email}
+${answers.name} <br/>
+GitHub username: ${answers.GitHub} <br/>
+Email: ${answers.email}
         
 `
 }
