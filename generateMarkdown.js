@@ -55,7 +55,7 @@ class generateMarkdown {
 ${this.renderLicenseBadge(answers.license)}
 
 ## Table of Content
-- [Project description](#Product description)
+- [Project description](#description)
 - [Installation](#installation)
 - [Usage Information](#usage)
 - [Test Instructions](#Test)
