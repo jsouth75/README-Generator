@@ -2,10 +2,10 @@
 const inquirer = require('inquirer');
 const generateMarkdown = require('./generateMarkdown');
 const fs = require('fs');
-const { resourceLimits } = require('worker_threads');
+const { generateReadme } = require('./generateMarkdown');
 
 // An array of questions for user input
-inquirer.prompt([
+const questions = [
     {
         type: "input",
         name: "name",
@@ -24,7 +24,7 @@ inquirer.prompt([
     {
         type: "input",
         name: "installation",
-        message: "Do you have any installation instructions?"
+        message: "List any installation instructions?"
     },
     {
         type: "input",
@@ -39,14 +39,14 @@ inquirer.prompt([
     {
         type: "input",
         name: "test",
-        message: "What are the test instructions?"
+        message: "Do you have any test instructions?"
     },
     {
         type: "checkbox",
         name: "license",
-        message: "Did you use any license?",
+        message: "Any license?",
         choices: [
-            'MIT', 'Apache', 'GNU', 'ISC', 'none',
+            'MIT', 'Apache_2', 'GNU_GPLv3', 'ISC'
         ],
         },
     {
@@ -59,23 +59,25 @@ inquirer.prompt([
         name: "email",
         message: "What is your email?"
     },
-])
-.then((answers) => {
-    const htmlPageContent = generateMarkdown(answers);
+]
 
-    fs.writeFile('generateMarkdown', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created file!')
-    );
-  });
+function runQuestions() {
+    return inquirer.prompt(questions)
+       .then((answers) => {
+            const generate = generateMarkdown.generateReadme(answers)
+            fs.writeFile('README.md', generate, function(err) {
+                if(err) {
+                    console.log('File was not created', err)
+                } else {
+                    console.log('Successfully created new README file')
+                }
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        
+    }
+    
+    runQuestions()
 
- 
-
-
-// const init = () => {
-//     promptUser()
-//       .then((answers) => fs.writeFileSync('generateMarkdown', [], (answers)))
-//       .then(() => console.log('Successfully created'))
-//       .catch((err) => console.error(err));
-//   };
-  
-//   init();
